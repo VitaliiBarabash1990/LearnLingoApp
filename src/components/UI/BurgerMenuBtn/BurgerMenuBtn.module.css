@@ -1,0 +1,9 @@
+.burger_menu_btn {
+	display: inline-flex;
+}
+
+@media screen and (min-width: 1280px) {
+	.burger_menu_btn {
+		display: none;
+	}
+}

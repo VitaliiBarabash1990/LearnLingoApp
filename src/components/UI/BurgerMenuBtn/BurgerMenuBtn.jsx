@@ -1,9 +1,10 @@
 import { HiMenu } from "react-icons/hi";
+import s from "./BurgerMenuBtn.module.css";
 
 const BurgerMenuBtn = ({ setIsBrgOpen, isBrgOpen }) => {
 	return (
 		<div
-			className="burgerMenuBtn"
+			className={s.burger_menu_btn}
 			onClick={() => {
 				setIsBrgOpen(!isBrgOpen);
 			}}

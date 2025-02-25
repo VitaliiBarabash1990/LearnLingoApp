@@ -1,0 +1,14 @@
+.nav_and_auth {
+	width: auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 238px;
+}
+.header_wraper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-left: 64px;
+	margin-right: 64px;
+}
