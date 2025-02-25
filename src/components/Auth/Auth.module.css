@@ -1,0 +1,60 @@
+.auth_list {
+	width: 255px;
+	height: 48px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}
+.login_button {
+	all: unset;
+	width: auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	cursor: pointer;
+	transition: scale 0.25s;
+	font-weight: 700;
+	font-size: 16px;
+	font-style: normal;
+	line-height: 1.25;
+}
+
+.login_button:hover {
+	background: inherit;
+	scale: 1.07;
+}
+.registration_button {
+	border-radius: 12px;
+	border: none;
+	padding: 14px 39px;
+	width: 164px;
+	height: 48px;
+	font-weight: 700;
+	font-size: 16px;
+	font-style: normal;
+	line-height: 1.25;
+	background: var(--text-color);
+	color: var(--color-white);
+	transition: scale 0.25s;
+}
+.registration_button:hover {
+	color: var(--text-color);
+	scale: 1.07;
+}
+.header_logout {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: auto;
+}
+.logout {
+	width: auto;
+}
+.header_logout_text {
+	font-size: 16px;
+	line-height: 125%;
+	color: var(--text-color);
+}

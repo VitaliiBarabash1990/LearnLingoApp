@@ -1,0 +1,6 @@
+.burgerMenuMeinBox {
+	display: none;
+}
+.active {
+	display: block;
+}
