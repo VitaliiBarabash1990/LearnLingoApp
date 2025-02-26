@@ -5,6 +5,8 @@
 
 	--text-color: #121417;
 	--color-white: #fff;
+	--background-1: #f8f8f8;
+	--background-2: #fbe9ba;
 
 	--yellow: #f4c550;
 	--light-yellow: #fbe9ba;
@@ -50,6 +52,7 @@ p {
 	font-weight: 400;
 	font-size: 14px;
 	color: var(--text-color);
+	text-align: left;
 }
 
 p:last-child {
@@ -78,12 +81,13 @@ button {
 	height: 60px;
 
 	font-family: inherit;
-	background: var(--light-yellow);
+	background: var(--yellow);
 	cursor: pointer;
 	transition: background-color 0.25s;
+	border: none;
 }
 button:hover {
-	background-color: var(--yellow);
+	background-color: var(--light-yellow);
 }
 
 input {
@@ -107,6 +111,7 @@ img {
 	line-height: 117%;
 	letter-spacing: -0.02em;
 	color: var(--text-color);
+	text-align: left;
 }
 
 .p {
