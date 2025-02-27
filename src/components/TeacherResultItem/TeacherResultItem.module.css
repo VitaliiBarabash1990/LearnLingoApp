@@ -1,0 +1,104 @@
+.avatar_wrap {
+	position: relative;
+	border: 3px solid #fbe9ba;
+	border-radius: 100px;
+	width: 120px;
+	height: 120px;
+	flex-shrink: 0;
+}
+.avatar {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.online {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	top: 15%;
+	right: 15%;
+	z-index: 5;
+}
+.offline {
+	display: none;
+}
+
+.result_wrapper {
+	border-radius: 24px;
+	padding: 24px;
+	width: 1184px;
+	height: 328px;
+	background: #fff;
+	display: flex;
+	gap: 48px;
+}
+
+.result_description {
+	width: 100%;
+}
+.head_style {
+	font-family: var(--font-family);
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 150%;
+	color: var(--text-color);
+}
+.head_style_gray {
+	color: var(--color-gray);
+}
+.head_style_dolar {
+	color: var(--dolar-green);
+}
+.descr_head {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.lesson {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+}
+.leson_icon {
+	width: 16px;
+	height: 16px;
+	fill: #fff;
+	stroke: #000;
+}
+.leson_star {
+	width: 16px;
+	height: 16px;
+}
+.separate {
+	width: 2px;
+	height: 16px;
+	stroke: var(--text-color);
+	stroke-opacity: 0.2;
+}
+.rating {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+.favorite_btn {
+	all: unset;
+	width: 26px;
+	height: 26px;
+	transform: scale(1);
+	transition: transform 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
+	margin-left: 48px;
+}
+.favorite_btn:hover {
+	background: none;
+	transform: scale(1.1);
+	transition: transform 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
+	cursor: pointer;
+}
+.btn_heart {
+	width: 100%;
+	height: 100%;
+	stroke: black;
+	fill: #fff;
+}
