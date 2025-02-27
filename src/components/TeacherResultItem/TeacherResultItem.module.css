@@ -102,3 +102,64 @@
 	stroke: black;
 	fill: #fff;
 }
+.teacher_name {
+	font-size: 24px;
+	line-height: 100%;
+	margin-top: 8px;
+}
+.teacher_info {
+	margin-top: 32px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 8px;
+	margin-bottom: 16px;
+}
+.info_style {
+	font-size: 16px;
+	line-height: 150%;
+	color: var(--color-gray);
+}
+.info_text {
+	display: inline-block;
+	color: #121417;
+}
+
+.more_btn {
+	all: unset;
+	text-decoration: underline;
+	display: flex;
+	transform: scale(1);
+	transition: transform 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
+	margin-bottom: 32px;
+}
+.more_btn:hover {
+	background: none;
+	cursor: pointer;
+	transform: scale(1.1);
+	transition: transform 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.teacher_level {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 8px;
+}
+.level_item {
+	display: flex;
+	align-items: center;
+	border: 1px solid rgba(18, 20, 23, 0.2);
+	border-radius: 35px;
+	padding: 8px 12px;
+	min-width: 124px;
+	height: 32px;
+}
+.level_item_text {
+	font-size: 14px;
+	line-height: 114%;
+}
+.active {
+	background: var(--yellow);
+	border: none;
+}

@@ -35,7 +35,6 @@ const TeacherResultItem = () => {
 							</svg>
 							<p className={s.head_style}>Rating: 4.8</p>
 						</div>
-
 						<svg className={s.separate}>
 							<use href="/sprite.svg#icon-vertical-line"></use>
 						</svg>
@@ -49,6 +48,48 @@ const TeacherResultItem = () => {
 						</button>
 					</div>
 				</div>
+
+				<h2 className={`title ${s.teacher_name}`}>Jane Smith</h2>
+				<ul className={s.teacher_info}>
+					<li className={`title ${s.info_style}`}>
+						Speaks: <p className={s.info_text}>German, French</p>
+					</li>
+					<li className={`title ${s.info_style}`}>
+						Lesson Info:{" "}
+						<p className={s.info_text}>
+							Lessons are structured to cover grammar, vocabulary, and practical
+							usage of the language.
+						</p>
+					</li>
+					<li className={`title ${s.info_style}`}>
+						Conditions:{" "}
+						<p className={s.info_text}>
+							Welcomes both adult learners and teenagers (13 years and
+							above).Provides personalized study plans.
+						</p>
+					</li>
+				</ul>
+
+				<button type="button" className={s.more_btn}>
+					Read more
+				</button>
+
+				<ul className={s.teacher_level}>
+					<li className={`${s.level_item} ${s.active}`}>
+						<p className={`title ${s.level_item_text}`}>#A1 Beginner</p>
+					</li>
+					<li className={s.level_item}>
+						<p className={`title ${s.level_item_text}`}>#A2 Elementary</p>
+					</li>
+					<li className={s.level_item}>
+						<p className={`title ${s.level_item_text}`}>#B1 Intermediate</p>
+					</li>
+					<li className={s.level_item}>
+						<p className={`title ${s.level_item_text}`}>
+							#B2 Upper-Intermediate
+						</p>
+					</li>
+				</ul>
 			</div>
 		</div>
 	);
