@@ -2,7 +2,10 @@ import { useState } from "react";
 import s from "./TeacherResultItem.module.css";
 
 const TeacherResultItem = () => {
-	const [isOnline, setIsOnline] = useState(true);
+	const [isRead, setIsRead] = useState(false);
+	const isOnline = true;
+	console.log(isRead);
+
 	return (
 		<div className={s.result_wrapper}>
 			<div className={s.avatar_wrap}>
@@ -70,9 +73,79 @@ const TeacherResultItem = () => {
 					</li>
 				</ul>
 
-				<button type="button" className={s.more_btn}>
-					Read more
-				</button>
+				{isRead && (
+					<div className={s.more_descr}>
+						<p className={s.more_descr_text}>
+							Jane is an experienced and dedicated language teacher specializing
+							in German and French. She holds a Bachelor's degree in German
+							Studies and a Master's degree in French Literature. Her passion
+							for languages and teaching has driven her to become a highly
+							proficient and knowledgeable instructor. With over 10 years of
+							teaching experience, Jane has helped numerous students of various
+							backgrounds and proficiency levels achieve their language learning
+							goals. She is skilled at adapting her teaching methods to suit the
+							needs and learning styles of her students, ensuring that they feel
+							supported and motivated throughout their language journey.
+						</p>
+						<ul className={s.reviews_list}>
+							<li className={s.reviews_item}>
+								<div className={s.reviews_people}>
+									<img
+										src="/reviews_avatar.png"
+										alt="avatar"
+										className={s.reviews_avatar}
+									/>
+									<div>
+										<h4 className={`title ${s.reviews_title}`}>Frank</h4>
+										<div className={s.reviews_info}>
+											<svg className={s.reviews_icon}>
+												<use href="/sprite.svg#icon-star"></use>
+											</svg>
+											<p className={s.reviews_rating}>4.0</p>
+										</div>
+									</div>
+								</div>
+								<p className={s.reviews_text}>
+									Jane's lessons were very helpful. I made good progress.
+								</p>
+							</li>
+
+							<li className={s.reviews_item}>
+								<div className={s.reviews_people}>
+									<img
+										src="/reviews_avatar.png"
+										alt="avatar"
+										className={s.reviews_avatar}
+									/>
+									<div>
+										<h4 className={`title ${s.reviews_title}`}>Frank</h4>
+										<div className={s.reviews_info}>
+											<svg className={s.reviews_icon}>
+												<use href="/sprite.svg#icon-star"></use>
+											</svg>
+											<p className={s.reviews_rating}>4.0</p>
+										</div>
+									</div>
+								</div>
+								<p className={s.reviews_text}>
+									Jane's lessons were very helpful. I made good progress.
+								</p>
+							</li>
+						</ul>
+					</div>
+				)}
+
+				{isRead ? (
+					""
+				) : (
+					<button
+						type="button"
+						className={s.more_btn}
+						onClick={() => setIsRead(true)}
+					>
+						Read more
+					</button>
+				)}
 
 				<ul className={s.teacher_level}>
 					<li className={`${s.level_item} ${s.active}`}>
@@ -90,6 +163,12 @@ const TeacherResultItem = () => {
 						</p>
 					</li>
 				</ul>
+
+				{isRead && (
+					<button type="button" className={s.trial_btn}>
+						Book trial lesson
+					</button>
+				)}
 			</div>
 		</div>
 	);
