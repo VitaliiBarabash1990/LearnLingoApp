@@ -2,17 +2,17 @@ import { Field, Form, Formik } from "formik";
 import s from "./Registration.module.css";
 
 const Registration = () => {
-	const loginData = {
+	const registerData = {
 		name: "",
 		email: "",
 		password: "",
 	};
 	return (
-		<Formik initialValues={loginData} onSubmit={() => {}}>
+		<Formik initialValues={registerData} onSubmit={() => {}}>
 			<Form className={s.form}>
 				<div className={s.form_info}>
-					<h3 className={`title ${s.login_title}`}>Registration</h3>
-					<p className={s.login_text}>
+					<h3 className={`title ${s.register_title}`}>Registration</h3>
+					<p className={s.register_text}>
 						Thank you for your interest in our platform! In order to register,
 						we need some information. Please provide us with the following
 						information
@@ -38,7 +38,7 @@ const Registration = () => {
 						className={s.input_item}
 					/>
 				</div>
-				<button type="submit" className={s.login_btn}>
+				<button type="submit" className={s.register_btn}>
 					Sign Up
 				</button>
 			</Form>

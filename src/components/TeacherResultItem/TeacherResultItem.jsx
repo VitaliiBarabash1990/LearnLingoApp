@@ -1,8 +1,11 @@
 import { useState } from "react";
 import s from "./TeacherResultItem.module.css";
+import Modal from "../Modal/Modal.jsx";
+import BookTrialLesson from "../BookTrialLesson/BookTrialLesson.jsx";
 
 const TeacherResultItem = () => {
 	const [isRead, setIsRead] = useState(false);
+	const [isTrial, setIsTrial] = useState(false);
 	const isOnline = true;
 	console.log(isRead);
 
@@ -165,9 +168,20 @@ const TeacherResultItem = () => {
 				</ul>
 
 				{isRead && (
-					<button type="button" className={s.trial_btn}>
+					<button
+						type="button"
+						className={s.trial_btn}
+						onClick={() => {
+							setIsTrial(true);
+						}}
+					>
 						Book trial lesson
 					</button>
+				)}
+				{isTrial && (
+					<Modal isTrial={isTrial}>
+						<BookTrialLesson />
+					</Modal>
 				)}
 			</div>
 		</div>

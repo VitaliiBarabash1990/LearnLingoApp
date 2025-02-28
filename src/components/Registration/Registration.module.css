@@ -12,11 +12,11 @@
 	align-items: flex-start;
 	gap: 20px;
 }
-.login_title {
+.register_title {
 	font-size: 40px;
 	line-height: 120%;
 }
-.login_text {
+.register_text {
 	font-size: 16px;
 	line-height: 137%;
 	letter-spacing: -0.05em;
@@ -35,6 +35,6 @@
 	width: 438px;
 	height: 54px;
 }
-.login_btn {
+.register_btn {
 	width: 100%;
 }
