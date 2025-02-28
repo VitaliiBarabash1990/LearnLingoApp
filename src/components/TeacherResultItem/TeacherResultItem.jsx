@@ -77,8 +77,8 @@ const TeacherResultItem = () => {
 					<div className={s.more_descr}>
 						<p className={s.more_descr_text}>
 							Jane is an experienced and dedicated language teacher specializing
-							in German and French. She holds a Bachelor's degree in German
-							Studies and a Master's degree in French Literature. Her passion
+							in German and French. She holds a Bachelor`s degree in German
+							Studies and a Master`s degree in French Literature. Her passion
 							for languages and teaching has driven her to become a highly
 							proficient and knowledgeable instructor. With over 10 years of
 							teaching experience, Jane has helped numerous students of various
@@ -106,7 +106,7 @@ const TeacherResultItem = () => {
 									</div>
 								</div>
 								<p className={s.reviews_text}>
-									Jane's lessons were very helpful. I made good progress.
+									Jane`s lessons were very helpful. I made good progress.
 								</p>
 							</li>
 
@@ -128,7 +128,7 @@ const TeacherResultItem = () => {
 									</div>
 								</div>
 								<p className={s.reviews_text}>
-									Jane's lessons were very helpful. I made good progress.
+									Jane`s lessons were very helpful. I made good progress.
 								</p>
 							</li>
 						</ul>
