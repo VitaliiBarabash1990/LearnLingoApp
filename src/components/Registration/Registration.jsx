@@ -1,7 +1,11 @@
 import { Field, Form, Formik } from "formik";
 import s from "./Registration.module.css";
+// import { useDispatch, useSelector } from "react-redux";
 
 const Registration = () => {
+	// const dispatch = useDispatch();
+	// const { userId, isAuthLoading, isError } = useSelector((state) => state.auth);
+
 	const registerData = {
 		name: "",
 		email: "",
