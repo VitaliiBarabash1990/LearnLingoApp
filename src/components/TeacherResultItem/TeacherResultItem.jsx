@@ -9,6 +9,10 @@ const TeacherResultItem = () => {
 	const isOnline = true;
 	console.log(isRead);
 
+	const closeModal = () => {
+		setIsTrial(false);
+	};
+
 	return (
 		<div className={s.result_wrapper}>
 			<div className={s.avatar_wrap}>
@@ -179,7 +183,7 @@ const TeacherResultItem = () => {
 					</button>
 				)}
 				{isTrial && (
-					<Modal isTrial={isTrial}>
+					<Modal closeModal={closeModal}>
 						<BookTrialLesson />
 					</Modal>
 				)}

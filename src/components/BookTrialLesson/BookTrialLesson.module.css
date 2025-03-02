@@ -108,7 +108,7 @@
 
 .trial_btn_radio:checked + .trial_radioBtn {
 	border-color: var(--yellow);
-	background-color: #fff;
+	background-color: var(--color-white);
 }
 
 .trial_btn_radio:checked + .trial_radioBtn::after {

@@ -21,12 +21,7 @@ const Modal = ({ children, isTrial, closeModal }) => {
 	return (
 		<div id="modal-wrapper" className={s.modal_overlay}>
 			<div className={s.modal_content}>
-				<button
-					className={s.close_btn}
-					onClick={() => {
-						closeModal();
-					}}
-				>
+				<button className={s.close_btn} onClick={closeModal}>
 					<svg className={s.close_btn_icon}>
 						<use href="/sprite.svg#icon-x"></use>
 					</svg>
