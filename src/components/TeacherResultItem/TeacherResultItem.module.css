@@ -12,6 +12,8 @@
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
 	border-radius: 100px;
+	width: 96px;
+	height: 96px;
 }
 .online {
 	position: absolute;

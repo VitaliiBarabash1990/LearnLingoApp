@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import s from "./HomePage.module.css";
 
 export default function HomePage() {
@@ -22,9 +23,9 @@ export default function HomePage() {
 							Tutors: Elevate your language proficiency to new heights by
 							connecting with highly qualified and experienced tutors.
 						</p>
-						<button type="button" className={`button ${s.hero_btn}`}>
+						<NavLink to="/teachers" className={s.hero_btn}>
 							Get started
-						</button>
+						</NavLink>
 					</li>
 					<li className={s.hero_image}>
 						<img src="/people.svg" alt="people" className={s.hero_people} />

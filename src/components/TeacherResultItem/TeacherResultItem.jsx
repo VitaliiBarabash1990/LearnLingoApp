@@ -3,7 +3,7 @@ import s from "./TeacherResultItem.module.css";
 import Modal from "../Modal/Modal.jsx";
 import BookTrialLesson from "../BookTrialLesson/BookTrialLesson.jsx";
 
-const TeacherResultItem = () => {
+const TeacherResultItem = ({ teacher }) => {
 	const [isRead, setIsRead] = useState(false);
 	const [isTrial, setIsTrial] = useState(false);
 	const isOnline = true;
@@ -19,7 +19,7 @@ const TeacherResultItem = () => {
 				<svg className={isOnline ? s.online : s.offline}>
 					<use href="/sprite.svg#icon-online"></use>
 				</svg>
-				<img src="/Avatar.png" alt="avatar" className={s.avatar} />
+				<img src={teacher.avatar_url} alt="avatar" className={s.avatar} />
 			</div>
 
 			<div className={s.result_description}>
@@ -35,7 +35,7 @@ const TeacherResultItem = () => {
 						<svg className={s.separate}>
 							<use href="/sprite.svg#icon-vertical-line"></use>
 						</svg>
-						<p className={s.head_style}>Lessons done: 1098</p>
+						<p className={s.head_style}>Lessons done: {teacher.lessons_done}</p>
 						<svg className={s.separate}>
 							<use href="/sprite.svg#icon-vertical-line"></use>
 						</svg>
@@ -43,13 +43,16 @@ const TeacherResultItem = () => {
 							<svg className={s.leson_star}>
 								<use href="/sprite.svg#icon-star"></use>
 							</svg>
-							<p className={s.head_style}>Rating: 4.8</p>
+							<p className={s.head_style}>Rating: {teacher.rating}</p>
 						</div>
 						<svg className={s.separate}>
 							<use href="/sprite.svg#icon-vertical-line"></use>
 						</svg>
 						<p className={s.head_style}>
-							Price / 1 hour: <span className={s.head_style_dolar}>30$</span>
+							Price / 1 hour:{" "}
+							<span className={s.head_style_dolar}>
+								{teacher.price_per_hour}$
+							</span>
 						</p>
 						<button type="button" className={s.favorite_btn}>
 							<svg className={s.btn_heart}>
@@ -59,85 +62,58 @@ const TeacherResultItem = () => {
 					</div>
 				</div>
 
-				<h2 className={`title ${s.teacher_name}`}>Jane Smith</h2>
+				<h2 className={`title ${s.teacher_name}`}>
+					{teacher.name} {teacher.surname}
+				</h2>
 				<ul className={s.teacher_info}>
 					<li className={`title ${s.info_style}`}>
-						Speaks: <p className={s.info_text}>German, French</p>
+						Speaks:{" "}
+						<p className={s.info_text}>
+							{teacher.languages.map((language, index, arr) =>
+								index === arr.length - 1 ? language : language + ", "
+							)}
+						</p>
 					</li>
 					<li className={`title ${s.info_style}`}>
-						Lesson Info:{" "}
-						<p className={s.info_text}>
-							Lessons are structured to cover grammar, vocabulary, and practical
-							usage of the language.
-						</p>
+						Lesson Info: <p className={s.info_text}>{teacher.lesson_info}</p>
 					</li>
 					<li className={`title ${s.info_style}`}>
 						Conditions:{" "}
 						<p className={s.info_text}>
-							Welcomes both adult learners and teenagers (13 years and
-							above).Provides personalized study plans.
+							{teacher.conditions.map((text) => text + " ")}
 						</p>
 					</li>
 				</ul>
 
 				{isRead && (
 					<div className={s.more_descr}>
-						<p className={s.more_descr_text}>
-							Jane is an experienced and dedicated language teacher specializing
-							in German and French. She holds a Bachelor`s degree in German
-							Studies and a Master`s degree in French Literature. Her passion
-							for languages and teaching has driven her to become a highly
-							proficient and knowledgeable instructor. With over 10 years of
-							teaching experience, Jane has helped numerous students of various
-							backgrounds and proficiency levels achieve their language learning
-							goals. She is skilled at adapting her teaching methods to suit the
-							needs and learning styles of her students, ensuring that they feel
-							supported and motivated throughout their language journey.
-						</p>
+						<p className={s.more_descr_text}>{teacher.experience}</p>
 						<ul className={s.reviews_list}>
-							<li className={s.reviews_item}>
-								<div className={s.reviews_people}>
-									<img
-										src="/reviews_avatar.png"
-										alt="avatar"
-										className={s.reviews_avatar}
-									/>
-									<div>
-										<h4 className={`title ${s.reviews_title}`}>Frank</h4>
-										<div className={s.reviews_info}>
-											<svg className={s.reviews_icon}>
-												<use href="/sprite.svg#icon-star"></use>
-											</svg>
-											<p className={s.reviews_rating}>4.0</p>
+							{teacher.reviews.map((review, index) => (
+								<li key={index} className={s.reviews_item}>
+									<div className={s.reviews_people}>
+										<img
+											src="/reviews_avatar.png"
+											alt="avatar"
+											className={s.reviews_avatar}
+										/>
+										<div>
+											<h4 className={`title ${s.reviews_title}`}>
+												{review.reviewer_name}
+											</h4>
+											<div className={s.reviews_info}>
+												<svg className={s.reviews_icon}>
+													<use href="/sprite.svg#icon-star"></use>
+												</svg>
+												<p className={s.reviews_rating}>
+													{review.reviewer_rating}.0
+												</p>
+											</div>
 										</div>
 									</div>
-								</div>
-								<p className={s.reviews_text}>
-									Jane`s lessons were very helpful. I made good progress.
-								</p>
-							</li>
-
-							<li className={s.reviews_item}>
-								<div className={s.reviews_people}>
-									<img
-										src="/reviews_avatar.png"
-										alt="avatar"
-										className={s.reviews_avatar}
-									/>
-									<div>
-										<h4 className={`title ${s.reviews_title}`}>Frank</h4>
-										<div className={s.reviews_info}>
-											<svg className={s.reviews_icon}>
-												<use href="/sprite.svg#icon-star"></use>
-											</svg>
-											<p className={s.reviews_rating}>4.0</p>
-										</div>
-									</div>
-								</div>
-								<p className={s.reviews_text}>
-									Jane`s lessons were very helpful. I made good progress.
-								</p>
-							</li>
+									<p className={s.reviews_text}>{review.comment}</p>
+								</li>
+							))}
 						</ul>
 					</div>
 				)}
@@ -155,20 +131,14 @@ const TeacherResultItem = () => {
 				)}
 
 				<ul className={s.teacher_level}>
-					<li className={`${s.level_item} ${s.active}`}>
-						<p className={`title ${s.level_item_text}`}>#A1 Beginner</p>
-					</li>
-					<li className={s.level_item}>
-						<p className={`title ${s.level_item_text}`}>#A2 Elementary</p>
-					</li>
-					<li className={s.level_item}>
-						<p className={`title ${s.level_item_text}`}>#B1 Intermediate</p>
-					</li>
-					<li className={s.level_item}>
-						<p className={`title ${s.level_item_text}`}>
-							#B2 Upper-Intermediate
-						</p>
-					</li>
+					{teacher.levels.map((level, index) => (
+						<li
+							key={index}
+							className={`${s.level_item} ${index === 0 ? s.active : ""}`}
+						>
+							<p className={`title ${s.level_item_text}`}>{level}</p>
+						</li>
+					))}
 				</ul>
 
 				{isRead && (
