@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import s from "./Registration.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuth } from "../../redux/auth/authSelectors.js";
@@ -54,24 +54,51 @@ const Registration = ({ closeModal }) => {
 					</p>
 				</div>
 				<div className={s.input_list}>
-					<Field
-						type="name"
-						name="name"
-						placeholder="Name"
-						className={s.input_item}
-					/>
-					<Field
-						type="email"
-						name="email"
-						placeholder="Email"
-						className={s.input_item}
-					/>
-					<Field
-						type="password"
-						name="password"
-						placeholder="Password"
-						className={s.input_item}
-					/>
+					<div className={s.input_list_error}>
+						<Field
+							type="name"
+							name="name"
+							placeholder="Name"
+							className={s.input_item}
+						/>
+						<div className={s.userSettings__errorMessage}>
+							<ErrorMessage
+								name="name"
+								component="div"
+								className={s.userSettings__errorText}
+							/>
+						</div>
+					</div>
+					<div className={s.input_list_error}>
+						<Field
+							type="email"
+							name="email"
+							placeholder="Email"
+							className={s.input_item}
+						/>
+						<div className={s.userSettings__errorMessage}>
+							<ErrorMessage
+								name="email"
+								component="div"
+								className={s.userSettings__errorText}
+							/>
+						</div>
+					</div>
+					<div className={s.input_list_error}>
+						<Field
+							type="password"
+							name="password"
+							placeholder="Password"
+							className={s.input_item}
+						/>
+						<div className={s.userSettings__errorMessage}>
+							<ErrorMessage
+								name="password"
+								component="div"
+								className={s.userSettings__errorText}
+							/>
+						</div>
+					</div>
 				</div>
 				<button
 					type="submit"

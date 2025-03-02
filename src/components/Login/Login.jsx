@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import s from "./Login.module.css";
 import { useDispatch } from "react-redux";
 import { LogIn } from "../../redux/auth/authOperations.js";
@@ -45,18 +45,36 @@ const Login = ({ closeModal }) => {
 					</p>
 				</div>
 				<div className={s.input_list}>
-					<Field
-						type="email"
-						name="email"
-						placeholder="Email"
-						className={s.input_item}
-					/>
-					<Field
-						type="password"
-						name="password"
-						placeholder="Password"
-						className={s.input_item}
-					/>
+					<div className={s.input_list_error}>
+						<Field
+							type="email"
+							name="email"
+							placeholder="Email"
+							className={s.input_item}
+						/>
+						<div className={s.userSettings__errorMessage}>
+							<ErrorMessage
+								name="email"
+								component="div"
+								className={s.userSettings__errorText}
+							/>
+						</div>
+					</div>
+					<div className={s.input_list_error}>
+						<Field
+							type="password"
+							name="password"
+							placeholder="Password"
+							className={s.input_item}
+						/>
+						<div className={s.userSettings__errorMessage}>
+							<ErrorMessage
+								name="password"
+								component="div"
+								className={s.userSettings__errorText}
+							/>
+						</div>
+					</div>
 				</div>
 				<button type="submit" className={s.login_btn}>
 					Log In
