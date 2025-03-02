@@ -4,14 +4,25 @@ import Modal from "../Modal/Modal.jsx";
 import Login from "../Login/Login.jsx";
 import Registration from "../Registration/Registration.jsx";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectAuth } from "../../redux/auth/authSelectors.js";
+import { LogOut } from "../../redux/auth/authOperations.js";
 
 const Auth = () => {
 	const [isLogin, setIsLogin] = useState(false);
 	const [isRegister, setIsRegister] = useState(false);
-	console.log("isLogin", isLogin);
-	console.log("isRegister", isRegister);
-	const isAuth = false;
-	const login = "Abalduj";
+	const dispatch = useDispatch();
+	const { isAuth, login } = useSelector(selectAuth);
+	const data = useSelector(selectAuth);
+	console.log("Data", data);
+
+	const closeModal = () => {
+		setIsLogin(false);
+		setIsRegister(false);
+	};
+	const handleLogOut = () => {
+		dispatch(LogOut());
+	};
 
 	if (!isAuth) {
 		return (
@@ -39,14 +50,14 @@ const Auth = () => {
 				</ul>
 
 				{isLogin && (
-					<Modal>
-						<Login />
+					<Modal closeModal={closeModal}>
+						<Login closeModal={closeModal} />
 					</Modal>
 				)}
 
 				{isRegister && (
-					<Modal>
-						<Registration />
+					<Modal closeModal={closeModal}>
+						<Registration closeModal={closeModal} />
 					</Modal>
 				)}
 			</>
@@ -56,7 +67,11 @@ const Auth = () => {
 	return (
 		<div className={s.header_logout}>
 			<p className={`title ${s.header_logout_text}`}>Hello, {login}!</p>
-			<button type="button" className={`${s.login_button} ${s.logout}`}>
+			<button
+				type="button"
+				className={`${s.login_button} ${s.logout}`}
+				onClick={handleLogOut}
+			>
 				<LuLogOut size={20} color={`var(--yellow)`} />
 				LogOut
 			</button>

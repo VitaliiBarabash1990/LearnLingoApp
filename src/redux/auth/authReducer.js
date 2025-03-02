@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SignUp } from "./authOperations.js";
+import { LogIn, LogOut, SignUp } from "./authOperations.js";
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -43,6 +43,36 @@ const authSlice = createSlice({
 				toast.error(`${payload.error}`);
 				state.isAuthLoading = false;
 				state.isError = payload.error;
+			})
+			.addCase(LogIn.pending, (state) => {
+				state.isAuthLoading = true;
+			})
+			.addCase(LogIn.fulfilled, (state, { payload }) => {
+				state.userId = payload.uid;
+				state.login = payload.displayName;
+				state.email = payload.email;
+				state.isAuth = true;
+				state.isAuthLoading = false;
+			})
+			.addCase(LogIn.rejected, (state, { payload }) => {
+				console.error(payload.error);
+				toast.error(`${payload.error}`);
+				state.isAuthLoading = false;
+			})
+			.addCase(LogOut.pending, (state) => {
+				state.isAuthLoading = true;
+			})
+			.addCase(LogOut.fulfilled, (state) => {
+				state.userId = null;
+				state.login = null;
+				state.email = null;
+				state.isAuth = false;
+				state.isAuthLoading = false;
+			})
+			.addCase(LogOut.rejected, (state, { payload }) => {
+				console.error(payload.error);
+				toast.error(`${payload.error}`);
+				state.isAuthLoading = false;
 			});
 	},
 });

@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import teachersReducer from "./teachers/teachersSlice.js";
+// import teachersReducer from "./teachers/teachersSlice.js";
 import storage from "redux-persist/lib/storage";
 import {
 	persistStore,
@@ -12,7 +12,7 @@ import {
 	REGISTER,
 } from "redux-persist";
 import authReduser from "./auth/authReducer";
-import favoriteReduser from "./favorite/favoriteSlice";
+// import favoriteReduser from "./favorite/favoriteSlice";
 
 const persistConfig = {
 	key: "root",
@@ -22,8 +22,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-	teachers: teachersReducer,
-	favorite: favoriteReduser,
+	// teachers: teachersReducer,
+	// favorite: favoriteReduser,
 	auth: authReduser,
 });
 
