@@ -3,14 +3,13 @@ import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
-	apiKey: "AIzaSyADC1mTCG_sgow0CznH3QclbDR9RxjBNkw",
-	authDomain: "teacherlearn-56a90.firebaseapp.com",
-	databaseURL:
-		"https://teacherlearn-56a90-default-rtdb.europe-west1.firebasedatabase.app",
-	projectId: "teacherlearn-56a90",
-	storageBucket: "teacherlearn-56a90.firebasestorage.app",
-	messagingSenderId: "431018046253",
-	appId: "1:431018046253:web:401bf49dc87af7d8bcd9a4",
+	apiKey: import.meta.env.VITE_API_KEY,
+	authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+	databaseURL: import.meta.env.VITE_DATABASE_URL,
+	projectId: import.meta.env.VITE_PROJECT_ID,
+	storageBucket: import.meta.env.VITE_STARAGE_BUCKET,
+	messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+	appId: import.meta.env.VITE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
