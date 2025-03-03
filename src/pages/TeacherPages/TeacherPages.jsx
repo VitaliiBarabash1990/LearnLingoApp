@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import s from "./TeacherPages.module.css";
 import TeacherForm from "../../components/TeacherForm/TeacherForm.jsx";
 import TeacherResultItem from "../../components/TeacherResultItem/TeacherResultItem.jsx";
@@ -9,7 +9,10 @@ import { getTeachers } from "../../redux/teachers/teachersOperations.js";
 const TeacherPages = () => {
 	const dispatch = useDispatch();
 	const { teachers, isLoading } = useSelector(selectTeachers);
-	console.log("DataTeachers", teachers);
+
+	const [loadTeachersCount, setLoadTeachersCount] = useState(4);
+	console.log("loadTeachersCount", loadTeachersCount);
+
 	useEffect(() => {
 		// document.body.style.background = "var(--background-1)";
 		document.body.classList.add(s.bg_teacher);
@@ -23,6 +26,10 @@ const TeacherPages = () => {
 	useEffect(() => {
 		dispatch(getTeachers());
 	}, [dispatch]);
+
+	const handleLoadMore = () => {
+		setLoadTeachersCount((prevCount) => prevCount + 4);
+	};
 
 	return (
 		<section className="section">
@@ -38,6 +45,9 @@ const TeacherPages = () => {
 							</li>
 						))}
 					</ul>
+					<button type="button" onClick={handleLoadMore} className={s.load_btn}>
+						Load more
+					</button>
 				</div>
 			</div>
 		</section>

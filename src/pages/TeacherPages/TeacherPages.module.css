@@ -16,3 +16,20 @@
 .teacher_result_item {
 	width: 100%;
 }
+.load_btn {
+	margin-top: 64px;
+	border-radius: 12px;
+	padding: 16px 16px;
+	width: 183px;
+	height: 60px;
+	font-weight: 700;
+	font-size: 18px;
+	line-height: 156%;
+	transform: scale(1);
+	transition: transform 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+.load_btn:hover {
+	background: var(--light-yellow);
+	transform: scale(1.2);
+	transition: transform 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
+}
