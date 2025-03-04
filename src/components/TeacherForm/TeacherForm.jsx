@@ -1,21 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import s from "./TeacherForm.module.css";
+import getUniqueValues from "../../help/getUniqueValues.js";
 
-const languages = ["French", "English", "German", "Ukrainian", "Polish"];
-const levels = [
-	"A1 Beginner",
-	"A2 Elementary",
-	"B1 Intermediate",
-	"B2 Upper-Intermediate",
-];
-const prices = ["10", "20", "30", "40"];
+// const prices = ["10", "20", "30", "40"];
 
-const TeacherForm = () => {
+const TeacherForm = ({ teachers, setLanguages, setLevel, setPrice }) => {
+	// const languages = getUniqueValues(teachers, "languages");
+	// const levels = getUniqueValues(teachers, "levels");
+	// const prices = getUniqueValues(teachers, "price_per_hour");
+	const languages = teachers ? getUniqueValues(teachers, "languages") : [];
+	const levels = teachers ? getUniqueValues(teachers, "levels") : [];
+	const prices = teachers ? getUniqueValues(teachers, "price_per_hour") : [];
+
 	const [formData, setFormData] = useState({
-		language: languages[0].toLowerCase(),
-		level: levels[0].toLowerCase(),
-		price: prices[0].toLowerCase(),
+		language: "",
+		level: "",
+		price: "",
 	});
+
+	useEffect(() => {
+		if (teachers) {
+			setFormData({
+				language: languages.length > 0 ? languages[0] : "",
+				level: levels.length > 0 ? levels[0] : "",
+				price: prices.length > 0 ? prices[0] : "",
+			});
+		}
+	}, [teachers]);
 
 	const handleChange = (event) => {
 		// З button
@@ -49,12 +60,12 @@ const TeacherForm = () => {
 					<select
 						id="lang"
 						name="language"
-						value={formData.language}
+						value={formData.language || ""}
 						onChange={handleChange}
 						className={s.teacher_select}
 					>
 						{languages.map((lang, index) => (
-							<option key={index} value={lang.toLowerCase()}>
+							<option key={index} value={lang}>
 								{lang}
 							</option>
 						))}
@@ -68,12 +79,12 @@ const TeacherForm = () => {
 					<select
 						id="level"
 						name="level"
-						value={formData.level}
+						value={formData.level || ""}
 						onChange={handleChange}
 						className={s.teacher_select}
 					>
 						{levels.map((level, index) => (
-							<option key={index} value={level.toLowerCase()}>
+							<option key={index} value={level}>
 								{level}
 							</option>
 						))}
@@ -87,12 +98,12 @@ const TeacherForm = () => {
 					<select
 						id="price"
 						name="price"
-						value={formData.price}
+						value={formData.price || ""}
 						onChange={handleChange}
 						className={s.teacher_select}
 					>
 						{prices.map((price, index) => (
-							<option key={index} value={price.toLowerCase()}>
+							<option key={index} value={price}>
 								{price}
 							</option>
 						))}
