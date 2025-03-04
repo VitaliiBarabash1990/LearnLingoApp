@@ -11,7 +11,19 @@ const TeacherPages = () => {
 	const { teachers, isLoading } = useSelector(selectTeachers);
 
 	const [loadTeachersCount, setLoadTeachersCount] = useState(4);
-	console.log("loadTeachersCount", loadTeachersCount);
+	const [language, setLanguage] = useState(false);
+	const [level, setLevel] = useState(false);
+	const [price, setPrice] = useState(false);
+
+	const filtredTeachers = teachers.filter((teacher) => {
+		if (!language && !level && !price) {
+			return true;
+		}
+		const languageResult = !language || teacher.languages.includes(language);
+		const levelResult = !level || teacher.levels.includes(level);
+		const priceResult = !price || `${teacher.price_per_hour}` === price;
+		return languageResult && levelResult && priceResult;
+	});
 
 	useEffect(() => {
 		// document.body.style.background = "var(--background-1)";
@@ -36,18 +48,39 @@ const TeacherPages = () => {
 			<div className="container">
 				<div className={s.teacher_wraper}>
 					<div className={s.teacher_search}>
-						<TeacherForm />
+						<TeacherForm
+							teachers={teachers}
+							setLanguage={(data) => setLanguage(data)}
+							setLevel={(data) => setLevel(data)}
+							setPrice={(data) => setPrice(data)}
+						/>
 					</div>
-					<ul className={s.teacher_result_list}>
-						{teachers.map((teacher, index) => (
-							<li key={index} className={s.teacher_result_item}>
-								<TeacherResultItem teacher={teacher} />
-							</li>
-						))}
-					</ul>
-					<button type="button" onClick={handleLoadMore} className={s.load_btn}>
-						Load more
-					</button>
+
+					{isLoading ? (
+						<h3>Loading...</h3>
+					) : filtredTeachers?.length !== 0 ? (
+						<ul className={s.teacher_result_list}>
+							{filtredTeachers
+								?.slice(0, loadTeachersCount)
+								.map((teacher, index) => (
+									<li key={index} className={s.teacher_result_item}>
+										<TeacherResultItem teacher={teacher} />
+									</li>
+								))}
+						</ul>
+					) : (
+						<p>No teacher was found according to your criteria</p>
+					)}
+
+					{filtredTeachers?.length > loadTeachersCount && !isLoading && (
+						<button
+							type="button"
+							onClick={handleLoadMore}
+							className={s.load_btn}
+						>
+							Load more
+						</button>
+					)}
 				</div>
 			</div>
 		</section>
@@ -55,3 +88,13 @@ const TeacherPages = () => {
 };
 
 export default TeacherPages;
+
+{
+	/* <ul className={s.teacher_result_list}>
+						{teachers.map((teacher, index) => (
+							<li key={index} className={s.teacher_result_item}>
+								<TeacherResultItem teacher={teacher} />
+							</li>
+						))}
+					</ul> */
+}
