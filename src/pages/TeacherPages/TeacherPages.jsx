@@ -16,12 +16,19 @@ const TeacherPages = () => {
 	const [price, setPrice] = useState(false);
 
 	const filtredTeachers = teachers.filter((teacher) => {
-		if (!language && !level && !price) {
+		// if (!language && !level && !price) {
+		if (language === "-" && level === "-" && price === "-") {
 			return true;
 		}
-		const languageResult = !language || teacher.languages.includes(language);
-		const levelResult = !level || teacher.levels.includes(level);
-		const priceResult = !price || `${teacher.price_per_hour}` === price;
+		// const languageResult = !language || teacher.languages.includes(language);
+		// const levelResult = !level || teacher.levels.includes(level);
+		// const priceResult = !price || `${teacher.price_per_hour}` === price;
+		// return languageResult && levelResult && priceResult;
+
+		const languageResult =
+			language === "-" || teacher.languages.includes(language);
+		const levelResult = level === "-" || teacher.levels.includes(level);
+		const priceResult = price === "-" || `${teacher.price_per_hour}` === price;
 		return languageResult && levelResult && priceResult;
 	});
 

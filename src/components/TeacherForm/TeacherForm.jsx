@@ -1,32 +1,60 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import s from "./TeacherForm.module.css";
 import getUniqueValues from "../../help/getUniqueValues.js";
 
-// const prices = ["10", "20", "30", "40"];
-
-const TeacherForm = ({ teachers, setLanguages, setLevel, setPrice }) => {
+const TeacherForm = ({ teachers, setLanguage, setLevel, setPrice }) => {
 	// const languages = getUniqueValues(teachers, "languages");
 	// const levels = getUniqueValues(teachers, "levels");
 	// const prices = getUniqueValues(teachers, "price_per_hour");
-	const languages = teachers ? getUniqueValues(teachers, "languages") : [];
-	const levels = teachers ? getUniqueValues(teachers, "levels") : [];
-	const prices = teachers ? getUniqueValues(teachers, "price_per_hour") : [];
+
+	// const languages = teachers ? getUniqueValues(teachers, "languages") : [];
+	// const levels = teachers ? getUniqueValues(teachers, "levels") : [];
+	// const prices = teachers ? getUniqueValues(teachers, "price_per_hour") : [];
+
+	const languages = useMemo(
+		() => (teachers ? getUniqueValues(teachers, "languages") : []),
+		[teachers]
+	);
+	const levels = useMemo(
+		() => (teachers ? getUniqueValues(teachers, "levels") : []),
+		[teachers]
+	);
+	const prices = useMemo(
+		() => (teachers ? getUniqueValues(teachers, "price_per_hour") : []),
+		[teachers]
+	);
 
 	const [formData, setFormData] = useState({
-		language: "",
-		level: "",
-		price: "",
+		language: "-",
+		level: "-",
+		price: "-",
 	});
+	console.log("language", formData.language);
+	console.log("level", formData.level);
+	console.log("price", formData.price);
 
 	useEffect(() => {
 		if (teachers) {
-			setFormData({
-				language: languages.length > 0 ? languages[0] : "",
-				level: levels.length > 0 ? levels[0] : "",
-				price: prices.length > 0 ? prices[0] : "",
+			setFormData((prevFormData) => {
+				const newFormData = {
+					language: languages.length > 0 ? languages[-1] : "",
+					level: levels.length > 0 ? levels[-1] : "",
+					price: prices.length > 0 ? prices[-1] : "",
+				};
+
+				// Перевіряємо, чи дані змінилися, щоб уникнути зайвих оновлень
+				if (
+					prevFormData.language !== newFormData.language ||
+					prevFormData.level !== newFormData.level ||
+					prevFormData.price !== newFormData.price
+				) {
+					return newFormData;
+				}
+
+				return prevFormData;
 			});
 		}
-	}, [teachers]);
+	}, [teachers, languages, levels, prices]);
 
 	const handleChange = (event) => {
 		// З button
@@ -41,7 +69,12 @@ const TeacherForm = ({ teachers, setLanguages, setLevel, setPrice }) => {
 			[event.target.name]: event.target.value,
 		};
 		setFormData(newFormData);
-		console.log("Оновлені дані форми:", newFormData);
+		console.log("Оновлені дані форми:", newFormData.language);
+		console.log("Оновлені дані форми:", newFormData.level);
+		console.log("Оновлені дані форми:", newFormData.price);
+		setLanguage(newFormData.language);
+		setLevel(newFormData.level);
+		setPrice(newFormData.price);
 	};
 
 	// З button
@@ -64,8 +97,11 @@ const TeacherForm = ({ teachers, setLanguages, setLevel, setPrice }) => {
 						onChange={handleChange}
 						className={s.teacher_select}
 					>
+						<option key={0} value="-">
+							-
+						</option>
 						{languages.map((lang, index) => (
-							<option key={index} value={lang}>
+							<option key={`${index} + 1`} value={lang}>
 								{lang}
 							</option>
 						))}
@@ -83,8 +119,11 @@ const TeacherForm = ({ teachers, setLanguages, setLevel, setPrice }) => {
 						onChange={handleChange}
 						className={s.teacher_select}
 					>
+						<option key={0} value="-">
+							-
+						</option>
 						{levels.map((level, index) => (
-							<option key={index} value={level}>
+							<option key={`${index} + 1`} value={level}>
 								{level}
 							</option>
 						))}
@@ -102,8 +141,11 @@ const TeacherForm = ({ teachers, setLanguages, setLevel, setPrice }) => {
 						onChange={handleChange}
 						className={s.teacher_select}
 					>
+						<option key={0} value="-">
+							-
+						</option>
 						{prices.map((price, index) => (
-							<option key={index} value={price}>
+							<option key={`${index} + 1`} value={price}>
 								{price}
 							</option>
 						))}
