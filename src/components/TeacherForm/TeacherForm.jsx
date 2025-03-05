@@ -33,28 +33,34 @@ const TeacherForm = ({ teachers, setLanguage, setLevel, setPrice }) => {
 	console.log("level", formData.level);
 	console.log("price", formData.price);
 
+	// useEffect(() => {
+	// 	if (teachers) {
+	// 		setFormData((prevFormData) => {
+	// 			const newFormData = {
+	// 				language: languages.length > 0 ? languages[0] : "-",
+	// 				level: levels.length > 0 ? levels[0] : "-",
+	// 				price: prices.length > 0 ? prices[0] : "-",
+	// 			};
+	// 			if (
+	// 				prevFormData.language !== newFormData.language ||
+	// 				prevFormData.level !== newFormData.level ||
+	// 				prevFormData.price !== newFormData.price
+	// 			) {
+	// 				return newFormData;
+	// 			}
+
+	// 			return prevFormData;
+	// 		});
+	// 	}
+	// }, [teachers, languages, levels, prices]);
+
 	useEffect(() => {
-		if (teachers) {
-			setFormData((prevFormData) => {
-				const newFormData = {
-					language: languages.length > 0 ? languages[-1] : "",
-					level: levels.length > 0 ? levels[-1] : "",
-					price: prices.length > 0 ? prices[-1] : "",
-				};
-
-				// Перевіряємо, чи дані змінилися, щоб уникнути зайвих оновлень
-				if (
-					prevFormData.language !== newFormData.language ||
-					prevFormData.level !== newFormData.level ||
-					prevFormData.price !== newFormData.price
-				) {
-					return newFormData;
-				}
-
-				return prevFormData;
-			});
-		}
-	}, [teachers, languages, levels, prices]);
+		setFormData({
+			language: "-",
+			level: "-",
+			price: "-",
+		});
+	}, []);
 
 	const handleChange = (event) => {
 		// З button
@@ -97,11 +103,9 @@ const TeacherForm = ({ teachers, setLanguage, setLevel, setPrice }) => {
 						onChange={handleChange}
 						className={s.teacher_select}
 					>
-						<option key={0} value="-">
-							-
-						</option>
+						<option value="-">-</option>
 						{languages.map((lang, index) => (
-							<option key={`${index} + 1`} value={lang}>
+							<option key={index} value={lang}>
 								{lang}
 							</option>
 						))}
@@ -119,11 +123,9 @@ const TeacherForm = ({ teachers, setLanguage, setLevel, setPrice }) => {
 						onChange={handleChange}
 						className={s.teacher_select}
 					>
-						<option key={0} value="-">
-							-
-						</option>
+						<option value="-">-</option>
 						{levels.map((level, index) => (
-							<option key={`${index} + 1`} value={level}>
+							<option key={index} value={level}>
 								{level}
 							</option>
 						))}
@@ -141,11 +143,9 @@ const TeacherForm = ({ teachers, setLanguage, setLevel, setPrice }) => {
 						onChange={handleChange}
 						className={s.teacher_select}
 					>
-						<option key={0} value="-">
-							-
-						</option>
+						<option value="-">-</option>
 						{prices.map((price, index) => (
-							<option key={`${index} + 1`} value={price}>
+							<option key={index} value={price}>
 								{price}
 							</option>
 						))}

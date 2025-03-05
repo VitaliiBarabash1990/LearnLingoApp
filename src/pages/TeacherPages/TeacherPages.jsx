@@ -11,15 +11,15 @@ const TeacherPages = () => {
 	const { teachers, isLoading } = useSelector(selectTeachers);
 
 	const [loadTeachersCount, setLoadTeachersCount] = useState(4);
-	const [language, setLanguage] = useState(false);
-	const [level, setLevel] = useState(false);
-	const [price, setPrice] = useState(false);
+	const [language, setLanguage] = useState("-");
+	const [level, setLevel] = useState("-");
+	const [price, setPrice] = useState("-");
 
 	const filtredTeachers = teachers.filter((teacher) => {
 		// if (!language && !level && !price) {
-		if (language === "-" && level === "-" && price === "-") {
-			return true;
-		}
+		// if (language === "-" && level === "-" && price === "-") {
+		// 	return true;
+		// }
 		// const languageResult = !language || teacher.languages.includes(language);
 		// const levelResult = !level || teacher.levels.includes(level);
 		// const priceResult = !price || `${teacher.price_per_hour}` === price;
