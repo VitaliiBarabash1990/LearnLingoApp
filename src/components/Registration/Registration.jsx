@@ -4,10 +4,12 @@ import s from "./Registration.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuth } from "../../redux/auth/authSelectors.js";
 import { SignUp } from "../../redux/auth/authOperations.js";
+import { useState } from "react";
 
 const Registration = ({ closeModal }) => {
 	const dispatch = useDispatch();
 	const { isAuthLoading, isError } = useSelector(selectAuth);
+	const [showPassword, setShowPassword] = useState(false);
 
 	const registerData = {
 		name: "",
@@ -86,7 +88,7 @@ const Registration = ({ closeModal }) => {
 					</div>
 					<div className={s.input_list_error}>
 						<Field
-							type="password"
+							type={showPassword ? "text" : "password"}
 							name="password"
 							placeholder="Password"
 							className={s.input_item}
@@ -98,6 +100,19 @@ const Registration = ({ closeModal }) => {
 								className={s.userSettings__errorText}
 							/>
 						</div>
+						<button
+							type="button"
+							className={s.password_btn}
+							onClick={() => setShowPassword((prev) => !prev)}
+						>
+							<svg className={s.password_icon}>
+								<use
+									href={`/sprite.svg#${
+										showPassword ? "icon-eye" : "icon-eye-off"
+									}`}
+								></use>
+							</svg>
+						</button>
 					</div>
 				</div>
 				<button

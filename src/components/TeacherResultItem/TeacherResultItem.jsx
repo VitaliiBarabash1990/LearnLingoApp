@@ -2,12 +2,25 @@ import { useState } from "react";
 import s from "./TeacherResultItem.module.css";
 import Modal from "../Modal/Modal.jsx";
 import BookTrialLesson from "../BookTrialLesson/BookTrialLesson.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { selectAuth } from "../../redux/auth/authSelectors.js";
+import { selectFavorite } from "../../redux/favorite/favoriteSelectors.js";
+import { toast } from "react-toastify";
+import {
+	addFavorite,
+	removeFavorite,
+} from "../../redux/favorite/favoriteSlice.js";
 
-const TeacherResultItem = ({ teacher }) => {
+const TeacherResultItem = ({ isLevel, teacher }) => {
+	const { id } = teacher;
+	const dispatch = useDispatch();
 	const [isRead, setIsRead] = useState(false);
 	const [isTrial, setIsTrial] = useState(false);
 	const isOnline = true;
-	console.log(isRead);
+	const { isAuth } = useSelector(selectAuth);
+
+	const favoriteList = useSelector(selectFavorite);
+	const isTeacherFavorite = favoriteList.includes(id);
 
 	const closeModal = () => {
 		setIsTrial(false);
@@ -24,6 +37,13 @@ const TeacherResultItem = ({ teacher }) => {
 
 			<div className={s.result_description}>
 				<div className={s.descr_head}>
+					<div className={s.avatar_mob}>
+						<svg className={isOnline ? s.online : s.offline}>
+							<use href="/sprite.svg#icon-online"></use>
+						</svg>
+						<img src={teacher.avatar_url} alt="avatar" className={s.avatar} />
+					</div>
+
 					<p className={`${s.head_style} ${s.head_style_gray}`}>Languages</p>
 					<div className={s.rating}>
 						<div className={s.lesson}>
@@ -54,11 +74,84 @@ const TeacherResultItem = ({ teacher }) => {
 								{teacher.price_per_hour}$
 							</span>
 						</p>
-						<button type="button" className={s.favorite_btn}>
-							<svg className={s.btn_heart}>
-								<use href="/sprite.svg#icon-heart"></use>
-							</svg>
-						</button>
+						<div className={s.block_btn}>
+							{isTeacherFavorite && isAuth ? (
+								<button
+									type="button"
+									className={s.favorite_btn}
+									onClick={() => {
+										if (!isAuth) {
+											toast.warn(
+												"The functionality is available only to authorized users"
+											);
+											return;
+										}
+										dispatch(removeFavorite(id));
+									}}
+								>
+									<svg className={`${s.btn_heart} ${s.btn_save}`}>
+										<use href="/sprite.svg#icon-heart"></use>
+									</svg>
+								</button>
+							) : (
+								<button
+									type="button"
+									className={s.favorite_btn}
+									onClick={() => {
+										if (!isAuth) {
+											toast.warn(
+												"The functionality is available only to authorized users"
+											);
+											return;
+										}
+										dispatch(addFavorite(id));
+									}}
+								>
+									<svg className={s.btn_heart}>
+										<use href="/sprite.svg#icon-heart"></use>
+									</svg>
+								</button>
+							)}
+						</div>
+					</div>
+					<div className={s.mob_block_btn}>
+						{isTeacherFavorite && isAuth ? (
+							<button
+								type="button"
+								className={s.favorite_btn}
+								onClick={() => {
+									if (!isAuth) {
+										toast.warn(
+											"The functionality is available only to authorized users"
+										);
+										return;
+									}
+									dispatch(removeFavorite(id));
+								}}
+							>
+								<svg className={`${s.btn_heart} ${s.btn_save}`}>
+									<use href="/sprite.svg#icon-heart"></use>
+								</svg>
+							</button>
+						) : (
+							<button
+								type="button"
+								className={s.favorite_btn}
+								onClick={() => {
+									if (!isAuth) {
+										toast.warn(
+											"The functionality is available only to authorized users"
+										);
+										return;
+									}
+									dispatch(addFavorite(id));
+								}}
+							>
+								<svg className={s.btn_heart}>
+									<use href="/sprite.svg#icon-heart"></use>
+								</svg>
+							</button>
+						)}
 					</div>
 				</div>
 
@@ -134,7 +227,7 @@ const TeacherResultItem = ({ teacher }) => {
 					{teacher.levels.map((level, index) => (
 						<li
 							key={index}
-							className={`${s.level_item} ${index === 0 ? s.active : ""}`}
+							className={`${s.level_item} ${isLevel === level ? s.active : ""}`}
 						>
 							<p className={`title ${s.level_item_text}`}>{level}</p>
 						</li>
@@ -153,7 +246,7 @@ const TeacherResultItem = ({ teacher }) => {
 					</button>
 				)}
 				{isTrial && (
-					<Modal closeModal={closeModal}>
+					<Modal isLock={isTrial} closeModal={closeModal}>
 						<BookTrialLesson />
 					</Modal>
 				)}

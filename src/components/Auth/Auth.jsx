@@ -13,8 +13,6 @@ const Auth = () => {
 	const [isRegister, setIsRegister] = useState(false);
 	const dispatch = useDispatch();
 	const { isAuth, login } = useSelector(selectAuth);
-	const data = useSelector(selectAuth);
-	console.log("Data", data);
 
 	const closeModal = () => {
 		setIsLogin(false);
@@ -50,13 +48,13 @@ const Auth = () => {
 				</ul>
 
 				{isLogin && (
-					<Modal closeModal={closeModal}>
+					<Modal isLock={isLogin} closeModal={closeModal}>
 						<Login closeModal={closeModal} />
 					</Modal>
 				)}
 
 				{isRegister && (
-					<Modal closeModal={closeModal}>
+					<Modal isLock={isRegister} closeModal={closeModal}>
 						<Registration closeModal={closeModal} />
 					</Modal>
 				)}

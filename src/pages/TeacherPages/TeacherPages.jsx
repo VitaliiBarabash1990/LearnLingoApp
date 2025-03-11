@@ -16,14 +16,9 @@ const TeacherPages = () => {
 	const [price, setPrice] = useState("-");
 
 	const filtredTeachers = teachers.filter((teacher) => {
-		// if (!language && !level && !price) {
 		// if (language === "-" && level === "-" && price === "-") {
 		// 	return true;
 		// }
-		// const languageResult = !language || teacher.languages.includes(language);
-		// const levelResult = !level || teacher.levels.includes(level);
-		// const priceResult = !price || `${teacher.price_per_hour}` === price;
-		// return languageResult && levelResult && priceResult;
 
 		const languageResult =
 			language === "-" || teacher.languages.includes(language);
@@ -67,13 +62,11 @@ const TeacherPages = () => {
 						<h3>Loading...</h3>
 					) : filtredTeachers?.length !== 0 ? (
 						<ul className={s.teacher_result_list}>
-							{filtredTeachers
-								?.slice(0, loadTeachersCount)
-								.map((teacher, index) => (
-									<li key={index} className={s.teacher_result_item}>
-										<TeacherResultItem teacher={teacher} />
-									</li>
-								))}
+							{filtredTeachers?.slice(0, loadTeachersCount).map((el, index) => (
+								<li key={index} className={s.teacher_result_item}>
+									<TeacherResultItem isLevel={level} teacher={el} />
+								</li>
+							))}
 						</ul>
 					) : (
 						<p>No teacher was found according to your criteria</p>
@@ -95,13 +88,3 @@ const TeacherPages = () => {
 };
 
 export default TeacherPages;
-
-{
-	/* <ul className={s.teacher_result_list}>
-						{teachers.map((teacher, index) => (
-							<li key={index} className={s.teacher_result_item}>
-								<TeacherResultItem teacher={teacher} />
-							</li>
-						))}
-					</ul> */
-}

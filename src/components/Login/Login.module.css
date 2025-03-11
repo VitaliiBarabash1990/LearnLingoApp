@@ -1,10 +1,10 @@
 .form {
-	width: 438px;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: space-between;
 	gap: 40px;
+	max-width: 438px;
 }
 .form_info {
 	display: flex;
@@ -27,12 +27,14 @@
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 18px;
+	width: 100%;
 }
 .input_item {
 	border: 1px solid rgba(18, 20, 23, 0.1);
 	border-radius: 12px;
 	padding: 16px 18px 16px 18px;
-	width: 438px;
+	min-width: 100%;
+	max-width: 438px;
 	height: 54px;
 }
 .login_btn {
@@ -40,6 +42,7 @@
 }
 .input_list_error {
 	position: relative;
+	width: 100%;
 }
 .userSettings__errorText {
 	position: absolute;
@@ -52,4 +55,32 @@
 }
 .userSettings__errorMessage {
 	margin-top: 10px;
+}
+.input_item:last-child {
+	position: relative;
+}
+.password_btn {
+	all: unset;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 50%;
+	right: 18px;
+	transform: translateY(-70%);
+	z-index: 3;
+	cursor: pointer;
+}
+
+.password_icon {
+	stroke: var(--text-color);
+	fill: var(--color-white);
+	width: 20px;
+	height: 20px;
+}
+@media screen and (min-width: 768px) {
+	.form,
+	.input_item {
+		width: 438px;
+	}
 }

@@ -29,9 +29,6 @@ const TeacherForm = ({ teachers, setLanguage, setLevel, setPrice }) => {
 		level: "-",
 		price: "-",
 	});
-	console.log("language", formData.language);
-	console.log("level", formData.level);
-	console.log("price", formData.price);
 
 	// useEffect(() => {
 	// 	if (teachers) {
@@ -75,9 +72,6 @@ const TeacherForm = ({ teachers, setLanguage, setLevel, setPrice }) => {
 			[event.target.name]: event.target.value,
 		};
 		setFormData(newFormData);
-		console.log("Оновлені дані форми:", newFormData.language);
-		console.log("Оновлені дані форми:", newFormData.level);
-		console.log("Оновлені дані форми:", newFormData.price);
 		setLanguage(newFormData.language);
 		setLevel(newFormData.level);
 		setPrice(newFormData.price);
@@ -86,7 +80,6 @@ const TeacherForm = ({ teachers, setLanguage, setLevel, setPrice }) => {
 	// З button
 	// const handleSubmit = (event) => {
 	// 	event.preventDefault();
-	// 	console.log("Дані форми:", formData);
 	// };
 
 	return (

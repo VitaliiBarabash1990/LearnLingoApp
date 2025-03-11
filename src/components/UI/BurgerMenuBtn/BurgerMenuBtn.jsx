@@ -1,5 +1,6 @@
 import { HiMenu } from "react-icons/hi";
 import s from "./BurgerMenuBtn.module.css";
+import { MdClose } from "react-icons/md";
 
 const BurgerMenuBtn = ({ setIsBrgOpen, isBrgOpen }) => {
 	return (
@@ -9,7 +10,8 @@ const BurgerMenuBtn = ({ setIsBrgOpen, isBrgOpen }) => {
 				setIsBrgOpen(!isBrgOpen);
 			}}
 		>
-			<HiMenu size={28} color={`var(--accent-color)`} />
+			{!isBrgOpen && <HiMenu size={28} color={`var(--accent-color)`} />}
+			{isBrgOpen && <MdClose size={28} color={`var(--accent-color)`} />}
 		</div>
 	);
 };

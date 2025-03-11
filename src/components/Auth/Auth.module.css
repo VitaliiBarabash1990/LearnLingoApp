@@ -2,10 +2,15 @@
 	width: 255px;
 	height: 48px;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
 	gap: 16px;
+}
+@media screen and (min-width: 768px) {
+	.auth_list {
+		flex-direction: row;
+	}
 }
 .login_button {
 	all: unset;

@@ -17,7 +17,11 @@ export const teachersSlice = createSlice({
 			})
 			.addCase(getTeachers.fulfilled, (state, { payload }) => {
 				state.isLoading = false;
-				state.teachers = payload;
+				// state.teachers = payload;
+				state.teachers = payload.map((teacher, index) => ({
+					...teacher,
+					id: index,
+				}));
 			})
 			.addCase(getTeachers.rejected, (state) => {
 				state.isLoading = false;
