@@ -39,6 +39,6 @@
 		margin-right: 64px;
 	}
 	.nav_and_auth {
-		gap: 238px;
+		width: 60%;
 	}
 }

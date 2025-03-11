@@ -65,11 +65,17 @@
 	align-items: center;
 	justify-content: center;
 	position: absolute;
-	top: 50%;
+	top: 25%;
 	right: 18px;
-	transform: translateY(-70%);
 	z-index: 3;
 	cursor: pointer;
+	transform: scale(1);
+	transition: scale(1) 500ms ease cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+.password_btn:hover {
+	background: none;
+	transform: scale(1.2);
+	transition: transform 500ms ease cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
 .password_icon {
